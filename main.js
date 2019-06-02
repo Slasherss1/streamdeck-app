@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const OBSws = require('obs-websocket-js');
+const brightness = require('brightness')
+const volume = require('loudness')
 const port = 3000
 
 const obs = new OBSws();
@@ -32,6 +34,24 @@ app.get('/3', function(req, res) {
   obs.send('SetSourceRender', {
     "source": "Webcam",
     "render": false
+  })
+})
+app.get('/4', function(req, res) {
+  res.sendFile(path.join(__dirname + "/4/index.html"))
+  console.log('Clicked Function 4')
+  volume.getVolume((err, vol) => {
+    volume.setVolume(vol + 2, (err) => {
+      console.log(err)
+    })
+  })
+})
+app.get('/5', function(req, res) {
+  res.sendFile(path.join(__dirname + "/5/index.html"))
+  console.log("Clicked Function 5");
+  volume.getVolume((err, vol) => {
+    volume.setVolume(vol - 2, (err) => {
+      console.log(err);
+    })
   })
 })
 

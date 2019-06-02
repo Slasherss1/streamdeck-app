@@ -1,7 +1,11 @@
 const express = require('express')
 const app = express()
 const path = require('path');
+const OBSws = require('obs-websocket-js');
 const port = 3000
+
+const obs = new OBSws();
+obs.connect({address: 'localhost:4444'});
 
 app.get('/', function(req, res) {res.sendFile(path.join(__dirname + "/index.html"))})
 app.get('/1', function(req, res) {

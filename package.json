@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Slasherss1/streamdeck-app#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "obs-websocket-js": "^3.0.0"
   }
 }

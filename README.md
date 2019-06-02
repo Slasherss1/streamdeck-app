@@ -15,6 +15,7 @@ This branch is for windows app.
 3. Type in: `npm install`
 4. To start project enter `npm t`
 ## 2. From release
+##### Note: No releases at the moment. Reason: No UI
 1. Download
 2. Un-zip
 3. Launch *.exe

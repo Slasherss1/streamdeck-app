@@ -8,6 +8,7 @@ const port = 3000
 
 const obs = new OBSws();
 obs.connect({address: 'localhost:4444'});
+console.log("Errors may apear before this line if obs was not found.");
 
 app.get('/', function(req, res) {res.sendFile(path.join(__dirname + "/index.html"))})
 app.get('/1', function(req, res) {
@@ -39,19 +40,19 @@ app.get('/3', function(req, res) {
 app.get('/4', function(req, res) {
   res.sendFile(path.join(__dirname + "/4/index.html"))
   console.log('Clicked Function 4')
-  volume.getVolume((err, vol) => {
-    volume.setVolume(vol + 2, (err) => {
-      console.log(err)
-    })
+  brightness.get().then(level => {
+    if (level == 1) {
+      return
+    } else {brightness.set(level + 0.1)}
   })
 })
 app.get('/5', function(req, res) {
   res.sendFile(path.join(__dirname + "/5/index.html"))
   console.log("Clicked Function 5");
-  volume.getVolume((err, vol) => {
-    volume.setVolume(vol - 2, (err) => {
-      console.log(err);
-    })
+  brightness.get().then(level => {
+    if (level == 0) {
+      return
+    } else {brightness.set(level - 0.1)}
   })
 })
 

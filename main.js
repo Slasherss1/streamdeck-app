@@ -1,17 +1,8 @@
-const { app, BrowserWindow } = require('electron')
+const express = require('express')
+const app = express()
+const path = require('path');
+const port = 3000
 
-function createWindow () {
-  // Create the browser window.
-  let win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  })
+app.get('/', function(req, res) {res.sendFile(path.join(__dirname + "/index.html"))})
 
-  // and load the index.html of the app.
-  win.loadFile('index.html')
-}
-
-app.on('ready', createWindow)
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))

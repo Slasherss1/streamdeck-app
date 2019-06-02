@@ -7,7 +7,7 @@ const volume = require('loudness')
 const port = 3000
 
 const obs = new OBSws();
-obs.connect({address: 'localhost:4444'}).then(console.log("Errors may apear before this line if obs was not found."));
+obs.connect({address: 'localhost:4444'});
 
 app.get('/', function(req, res) {res.sendFile(path.join(__dirname + "/index.html"))})
 app.get('/1', function(req, res) {
@@ -59,4 +59,5 @@ process.on('exit', () => {obs.disconnect()})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
+  console.log("Errors may apear below this line if obs was not found.")
 })
